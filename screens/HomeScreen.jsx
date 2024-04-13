@@ -19,7 +19,7 @@ function HomeScreen({navigation}) {
         <MainLayout>
             <SafeAreaView>
             <ToDoList tasks= {tasks}/>
-            <ToDoForm addTask={addTask}/>
+            <ToDoForm />
             <Button title="About" onPress={() => navigation.navigate('About')} />
             </SafeAreaView>
         </MainLayout>

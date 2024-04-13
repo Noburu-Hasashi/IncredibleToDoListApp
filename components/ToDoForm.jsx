@@ -1,6 +1,9 @@
 import React from 'react';
+import taskData from '../data/tasks';
 import {
     SafeAreaView,
+    useState,
+    useEffect,
     StyleSheet,
     Pressable,
     View,
@@ -10,21 +13,27 @@ import {
     Button
   } from 'react-native';
 
-function ToDoForm({addTask}) {
-  const [task, setTask] = React.useState('');
+function ToDoForm() {
+  const [randomTask, setRandomTask] = React.useState('');
 
-  const handleSubmit = () => {
-    addTask(task);
+  const generateRandomTask = () => {
+    const randomIndex = Math.floor(Math.random() * taskData.length);
+    return taskData[randomIndex];
+  }
+
+  const handleGenerateTask = () => {
+    setTask(generateRandomTask());
   }
 
   return (
     <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="Add a new task..."
-          onChangeText={(text) => setTask(text)}
+          placeholder="Click the button to generate a random task.."
+          value={randomTask}
+          onChangeText={setRandomTask}
         />
-        <Button title="Add" onPress={handleSubmit}/>
+        <Button title="Generate Random Task" onPress={handleGenerateTask}/>
       </View>
   );
 }
